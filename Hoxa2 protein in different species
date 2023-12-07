@@ -8,7 +8,6 @@ axis during embryonic development. My biological question will show which animal
 
 
 
-
 #INFO
 Look up the Hoxa2 gene under the HomoloGene search bar. This will bring up all the species that have that gene. 
 
@@ -23,7 +22,6 @@ Look up the Hoxa2 gene under the HomoloGene search bar. This will bring up all t
 7. #To check the combined fasta file: cat combined.fa 
 8. mafft 
 9. #Make the tree: iqtree -s Hoxa2_output.fa -m LG -bb 1000 -pre Hoxa2_output.fa
-
 
 
 
