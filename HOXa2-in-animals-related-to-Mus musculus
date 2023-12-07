@@ -1,0 +1,47 @@
+#How to create a Phylogenetic tree for the HOXa2 protein
+
+
+INTRO
+Homeobox genes are found on separate chromosomes in groups A, B, C, and D. The HOXA2 (Homeobox A2), which is part of group A and located on chromosome 7, gene 
+is known to regulate gene expression, morphogenesis, and differentiation. It also places hindbrain segments in the proper location along the anterior-posterior 
+axis during embryonic development. My biological question will show which animals have the gene HOXA2 and their relation to Mus musculus (house mouse).
+
+
+
+
+#INFO
+Look up the Hoxa2 gene under the HomoloGene search bar. This will bring up all the species that have that gene. 
+
+#CODE USED EACH TIME FOR EACH DATASET
+1. #Create environment: Conda activate /project/stuckert/epinyang/phylo_lab/Hoxa2_datasets
+2. #Create a directory where the FASTA files for each species' Hoxa2 protein sequence will resort: mkdir Hoxa_project
+3. #Open directory: cd Hoxa_project 
+4. #Get datasets from the NCBI website for 5 different species of animals (including Mus musculus) that also have the Hoxa2 gene:
+        Download them to your computer and copy the sequence each time you are creating the FASTA file and past as its text
+5. #Create a FASTA file for each species: nano Species_hoxa2.fa
+6. #combine FASTA files: cat file1.fa file2.fa > combined.fa
+7. #To check the combined fasta file: cat combined.fa 
+8. mafft 
+9. #Make the tree: iqtree -s Hoxa2_output.fa -m LG -bb 1000 -pre Hoxa2_output.fa
+
+
+
+
+R-Studio
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("ggtree")
+install.packages("ape")
+library(ape) # loads package ape
+library(ggtree)
+Hoxa2_tree  <- "(Mouse:0.0058815472,(Humans:0.0000022931,(Chimpanzees:0.0000022931,(Cattle:0.0192847979,(Hamster:0.0054790469)"
+Hoxa2_tree <- read.tree(text = Hoxa2_tree )
+shh_tree <- ape::root.phylo(Hoxa2_tree , outgroup = "Mouse")
+ggtree(Hoxa2_tree) + geom_tiplab()
+
+
+
+
+
+
+
